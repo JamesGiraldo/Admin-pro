@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "admipro"
+  "defaultProject": "admipro",
+  "cli": {
+    "analytics": "d491f9fb-edb2-4cb4-ac8c-5d0bcf71dc5d"
+  }
 }
