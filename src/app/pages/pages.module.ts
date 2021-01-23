@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router' //esta es lo mismo para utilizar los modulos de rutas
+
 
 // Modulos
 import { SharedModule } from '../shared/shared.module';
+import { ComponentsModule } from '../components/components.module';
 // import { AppRoutingModule } from '../app-routing.module'; //esta es lo mismo para utilizar los modulos de rutas declaradas
 
 
@@ -30,9 +33,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    // AppRoutingModule    
+    RouterModule,
     SharedModule,
-    // AppRoutingModule
-    RouterModule
+    ComponentsModule
   ]
 })
 export class PagesModule { }
