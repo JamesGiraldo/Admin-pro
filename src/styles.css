@@ -1,11 +1,35 @@
-
-.fast{
-    -webkit-animation-duration: 0.3s;
-    animation-duration: 0.3s;
-    -webkit-animation-fill-mode:both;
-    animation-fill-mode:both
+.fast {
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
 }
 
 #themecolors .selector {
     cursor: pointer;
+}
+
+
+/* scroll top */
+
+.ir-arriba {
+    display: flex;
+    padding: 20px;
+    background: #fcae70;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    bottom: 35px;
+    right: 20px;
+    border-radius: 35px;
+    background: url('./assets/images/flecha.png');
+    background-size: cover;
+}
+
+.ir-arriba:hover {
+    border: 2px solid #fcae70;
+    -webkit-box-shadow: 13px 13px 31px -6px rgba(0, 0, 0, 0.77);
+    -moz-box-shadow: 13px 13px 31px -6px rgba(0, 0, 0, 0.77);
+    box-shadow: 13px 13px 31px -6px rgba(0, 0, 0, 0.77);
 }

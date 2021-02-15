@@ -4,8 +4,7 @@ import { SettingsService } from '../../services/settings.service';
 @Component({
   selector: 'app-account-settings',
   templateUrl: './account-settings.component.html',
-  styles: [
-  ]
+  styleUrls: ['./account-settings.component.css']
 })
 export class AccountSettingsComponent implements OnInit {
 
@@ -16,11 +15,11 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   changeTheme( theme: string ) {
-        
+
     this.settingsService.changeTheme( theme );
-    
+
   }
 
-  
+
 
 }
