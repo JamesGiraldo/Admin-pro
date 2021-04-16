@@ -5,10 +5,12 @@
     animation-fill-mode: both;
 }
 
-#themecolors .selector {
-    cursor: pointer;
+#themecolors .selector  {
+    cursor: pointer !important;
 }
-
+#cursor{
+    cursor: pointer !important;
+}
 
 /* scroll top */
 
