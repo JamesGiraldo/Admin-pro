@@ -9,24 +9,35 @@ import { environment } from '../../environments/environment';
 import { LoginForm } from '../interfaces/login-form.interface';
 import { RegisterForm } from '../interfaces/register-form.interface';
 
+import { Usuario } from '../models/usuario.model';
+
 const base_url = environment.base_url
 
-declare const gapi:any;
+declare const gapi: any;
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-
+  
   /** propiedad corespondiente a google que contiene todo el estado de la autentificación */
   public auth2: any;
+  public usuario: any =  Usuario;
 
   constructor( private http: HttpClient, private router: Router, private ngZone: NgZone) { 
     this.googleinit();
   }
 
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string {
+    return this.usuario.uid || '';
+  }
+
   googleinit() {
-    return new Promise( resolve => {
+    return new Promise<void>( resolve => {
       gapi.load('auth2', () => {
         // Retrieve the singleton for the GoogleAuth library and set up the client.
         this.auth2 = gapi.auth2.init({
@@ -51,16 +62,20 @@ export class UsuarioService {
 
   /** Validar el token de la paltaforma por medio de backend */
   validarToken(): Observable<boolean> {
-    var token = localStorage.getItem('token') || '';
+    
     return this.http.get(`${ base_url }/login/renew`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
-      tap( (resp: any ) => {
-        localStorage.setItem('token', resp.token )
+      map( (resp: any ) => {
+        /** desestructurar la información de la respuesta */
+        const { nombre, email, img = '', google, role, uid } = resp.usuario;
+        /** Creando la instancia del objeto usuario  */
+        this.usuario = new Usuario( nombre, email, '', img, google, role, uid );
+        localStorage.setItem('token', resp.token );
+        return true;
       }),
-      map( resp => true ),
       /** esto en caso de que suseda error  en todo el metodo, captura el error */
       catchError( error => of(false) )
     );
@@ -74,6 +89,20 @@ export class UsuarioService {
                         localStorage.setItem('token', resp.token )
                       })
                     )
+  }
+
+  /** metodo de actualización para el usuaro del backend XD  */
+  actualizarPerfil( data: { email: string, nombre: string, role: string } ){
+    data = {
+      ...data,
+      role: this.usuario.role
+    };
+    
+    return  this.http.put( `${ base_url }/usuarios/${ this.uid }`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    });
   }
 
   /** metodo de login para el backend */
