@@ -19,7 +19,11 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    // Lo saque de https://stackoverflow.com/questions/49699067/property-has-no-initializer-and-is-not-definitely-assigned-in-the-construc
+    //  para para deshacerse del error de compilación. 
+    "strictPropertyInitialization": false
+
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
