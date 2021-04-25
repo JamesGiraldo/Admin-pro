@@ -16,9 +16,9 @@ import Swal from 'sweetalert2'
 export class PerfilComponent implements OnInit {
 
   public perfilForm: FormGroup;
-  public usuario = Usuario;
+  public usuario: Usuario;
   public imagenSubir: File;
-  public imgenTemp: any  = null;
+  public imgTemp: any  = null;
   
   constructor( private fb: FormBuilder, private usuarioService: UsuarioService, private fileUploadService: FileUploadService) {  
     this.usuario = usuarioService.usuario;
@@ -45,22 +45,22 @@ export class PerfilComponent implements OnInit {
                          Swal.fire('Oops...', `${ err.error.msg }`, 'error')
                       });
   }
-
-  cambiarImagen( file: File ){
-    this.imagenSubir = file;
-
-    /** si la imagen no existe, no hacer nada XD */
-    if ( !file ) { 
-      return this.imgenTemp = null;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL( file );
-
-    reader.onloadend = () => {
-      this.imgenTemp = reader.result; 
-    }
-
+  
+  cambiarImagen( file: File ): any {
+          
+      this.imagenSubir = file;
+      
+      /** si la imagen no existe, no hacer nada XD */
+      if (!file) {
+        return this.imgTemp = null;
+      }
+  
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+  
+      reader.onloadend = () => {
+        this.imgTemp = reader.result;
+      }
   }
 
   subirImagen(){

@@ -13,7 +13,7 @@ export class FileUploadService {
   async actualizarFoto(
     archivo: File,
     tipo: 'usuarios' | 'medicos' | 'hospitales',
-    id: string
+    id?: string
   ){
     /** posibles errores capturarlos con : */
     try {
@@ -33,7 +33,7 @@ export class FileUploadService {
       const data = await resp.json();
       
       if ( data.ok) {
-        return data.nombreArchivo
+        return data.nombreArchivo;
       } else {
         console.log( data.msg );
         return false;

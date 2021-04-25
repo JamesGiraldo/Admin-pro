@@ -10,7 +10,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class HeaderComponent implements OnInit {
 
-  public usuario = Usuario;
+  public usuario: Usuario;
 
   constructor( private usuarioService: UsuarioService) { 
     this.usuario = usuarioService.usuario;

@@ -12,7 +12,7 @@ import { UsuarioService } from '../../services/usuario.service';
 export class SidebarComponent implements OnInit {
 
   public menuItems: any[];
-  public usuario = Usuario;
+  public usuario: Usuario;
 
   constructor( private sidebarService: SidebarService, private usuarioService: UsuarioService ) {
     this.menuItems = sidebarService.menu;    

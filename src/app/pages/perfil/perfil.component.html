@@ -35,12 +35,12 @@
 
                 <div class="row mt-4">
                     <div class="col-md-6">
-                        <input (change)="cambiarImagen( $event.target.files[0] )" type="file" class="input-avatar mt-5 mb-3">
+                        <input (change)="cambiarImagen($event.target.files[0])" type="file" class="input-avatar mt-5 mb-3">
                     </div>
                     <div class="col-md-6 mb-2">
                         <!-- <img src="../../../assets/images/captura.png" class="img-thumbnail img-avatar mb-4" alt=""> -->
-                        <img *ngIf="!imgenTemp" [src]="usuario.imagenUrl" alt="Imagen del usuario 😍 " class="img-thumbnail img-avatar mb-4">
-                         <img *ngIf="imgenTemp" [src]="imgenTemp" alt="Imagen del usuario 😍 " class="img-thumbnail img-avatar mb-4">
+                        <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" alt="Imagen del usuario 😍 " class="img-thumbnail img-avatar mb-4">
+                         <img *ngIf="imgTemp" [src]="imgTemp" alt="Imagen del usuario 😍 " class="img-thumbnail img-avatar mb-4">
                     </div>
                 </div>
 

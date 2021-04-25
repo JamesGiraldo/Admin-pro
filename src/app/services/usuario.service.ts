@@ -22,7 +22,7 @@ export class UsuarioService {
   
   /** propiedad corespondiente a google que contiene todo el estado de la autentificación */
   public auth2: any;
-  public usuario: any =  Usuario;
+  public usuario:  Usuario;
 
   constructor( private http: HttpClient, private router: Router, private ngZone: NgZone) { 
     this.googleinit();
@@ -70,7 +70,7 @@ export class UsuarioService {
     }).pipe(
       map( (resp: any ) => {
         /** desestructurar la información de la respuesta */
-        const { nombre, email, img = '', google, role, uid } = resp.usuario;
+        const { email, google, nombre, role, img , uid } = resp.usuario;
         /** Creando la instancia del objeto usuario  */
         this.usuario = new Usuario( nombre, email, '', img, google, role, uid );
         localStorage.setItem('token', resp.token );
@@ -92,7 +92,7 @@ export class UsuarioService {
   }
 
   /** metodo de actualización para el usuaro del backend XD  */
-  actualizarPerfil( data: { email: string, nombre: string, role: string } ){
+  actualizarPerfil( data: { email: string, nombre: string, role?: string } ){
     data = {
       ...data,
       role: this.usuario.role
