@@ -35,3 +35,14 @@
     -moz-box-shadow: 13px 13px 31px -6px rgba(0, 0, 0, 0.77);
     box-shadow: 13px 13px 31px -6px rgba(0, 0, 0, 0.77);
 }
+
+.w100 {
+    width: 100px;
+}
+.w130 {
+    width: 130px;
+}
+.avatar {
+    border-radius: 100%;
+    width: 40px;
+}

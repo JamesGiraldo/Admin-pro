@@ -1,0 +1,19 @@
+.fondo-modal-imagen{
+    background-color: rgba(0, 0, 0, 0.4);
+    left: 0px;
+    height: 0px;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9999;
+}
+
+.oculto{
+    display: none;
+}
+
+input[type=file]{
+    width: 100%;
+    text-align: center;
+    color: transparent;
+}

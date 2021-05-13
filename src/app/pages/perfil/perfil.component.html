@@ -34,10 +34,10 @@
                 <h6 class="card-subtitle">Imagen del usuario</h6>
 
                 <div class="row mt-4">
-                    <div class="col-md-6">
-                        <input (change)="cambiarImagen($event.target.files[0])" type="file" class="input-avatar mt-5 mb-3">
+                    <div class="col-6">
+                        <input (change)="cambiarImagen($event.target.files[0])"title="Cambiar Imagen" type="file" class="input-avatar mt-5 mb-3">
                     </div>
-                    <div class="col-md-6 mb-2">
+                    <div class="col-6 mb-2">
                         <!-- <img src="../../../assets/images/captura.png" class="img-thumbnail img-avatar mb-4" alt=""> -->
                         <img *ngIf="!imgTemp" [src]="usuario.imagenUrl" alt="Imagen del usuario 😍 " class="img-thumbnail img-avatar mb-4">
                          <img *ngIf="imgTemp" [src]="imgTemp" alt="Imagen del usuario 😍 " class="img-thumbnail img-avatar mb-4">
