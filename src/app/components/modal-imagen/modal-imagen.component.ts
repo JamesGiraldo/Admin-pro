@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class ModalImagenComponent implements OnInit {
 
   public imagenSubir: File;
-  public imgTemp: any = null;
+  public imgTemp:any | ArrayBuffer = null;
 
   constructor(public modalImagenService: ModalImagenService, public fileUploadService: FileUploadService) { }
 
@@ -23,7 +23,7 @@ export class ModalImagenComponent implements OnInit {
     this.modalImagenService.cerraModal()
   }
 
-  cambiarImagen(file: File) {
+  cambiarImagen(file: File): any {
 
     this.imagenSubir = file;
 

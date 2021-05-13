@@ -37,7 +37,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
         .pipe(
           delay(100)
         )
-        .subscribe( ( img: any ) => {
+        .subscribe( ( img ) => {
           this.cargarUsuarios()
         });
   }
@@ -71,7 +71,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     }
 
     this.busquedasService.buscar( 'usuarios', termino )
-        .subscribe( (resp: any) => {
+        .subscribe( (resp:  any) => {
           this.usuarios = resp;
         });
   }
@@ -88,12 +88,12 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     }
 
     Swal.fire({
-      title: 'Borrar usuario?',
+      title: '¿Borrar usuario?',
       text: `Estas apunto de borrar a ${ usuario.nombre }!`,
       icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#FF311E',
-      confirmButtonText: 'Si, borrarlo!'
+      confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if ( result.value ) {
         this.usuarioService.eleminarUsuarios( usuario )
@@ -117,7 +117,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   abrirModal( usuario: Usuario){
-    this.modalImagenService.abrirModal( 'usuarios', usuario.uid, usuario.img )
+    this.modalImagenService.abrirModal( 'usuarios', usuario.uid, usuario.img );
   }
 
 }

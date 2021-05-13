@@ -18,7 +18,7 @@ export class PerfilComponent implements OnInit {
   public perfilForm: FormGroup;
   public usuario: Usuario;
   public imagenSubir: File;
-  public imgTemp: any = null;
+  public imgTemp: any | ArrayBuffer = null;
 
   constructor(private fb: FormBuilder, private usuarioService: UsuarioService, private fileUploadService: FileUploadService) {
     this.usuario = usuarioService.usuario;
@@ -46,7 +46,7 @@ export class PerfilComponent implements OnInit {
       });
   }
 
-  cambiarImagen(file: File) {
+  cambiarImagen(file: File): any {
 
     this.imagenSubir = file;
 

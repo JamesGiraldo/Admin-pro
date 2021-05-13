@@ -142,7 +142,7 @@ export class UsuarioService {
     const url = ` ${base_url}/usuarios?desde=${desde} `;
     return this.http.get<CargarUsuarios>(url, this.headers)
       .pipe(
-        delay(10),
+        delay(5),
         map(resp => {
 
           const usuarios = resp.usuarios.map(
