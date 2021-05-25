@@ -139,7 +139,7 @@ export class UsuarioService {
   /** Cargar los usuarios, LISTARLOS */
   cargarUsuarios(desde: number = 0) {
     /** /usuarios?desde=0 */
-    const url = ` ${base_url}/usuarios?desde=${desde} `;
+    const url = `${base_url}/usuarios?desde=${desde}`;
     return this.http.get<CargarUsuarios>(url, this.headers)
       .pipe(
         delay(5),
@@ -159,7 +159,7 @@ export class UsuarioService {
   /** Eliminar usuario */
   eleminarUsuarios(usuario: Usuario) {
     /** /usuarios/60177e4c5832766de1deaa52 */
-    const url = ` ${base_url}/usuarios/${usuario.uid} `;
+    const url = `${base_url}/usuarios/${usuario.uid}`;
     return this.http.delete(url, this.headers)
   }
 

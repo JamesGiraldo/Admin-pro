@@ -1,0 +1,94 @@
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                 <input type="text"
+                        class="form-control"
+                        placeholder="Buscar hospital..."
+                        #txtTermino
+                        (keyup)="buscar(txtTermino.value)"/>  
+
+            </div>
+        </div>
+    </div>
+</div> 
+
+<div class="row animated fadeIn fast" *ngIf="cargando">
+    <div class="col-12">
+       
+        <div class="alert alert-info text-center">
+            <h4 class="alert-heading"> Cargando </h4>
+            <i class="fa fa-spin fa-refresh fa-3x"></i>
+            <p class="mb-0"> Por favor espere... </p>
+        </div>
+
+    </div>
+</div> 
+
+
+<div class="row" *ngIf="!cargando">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-8">
+                        <h4 class="card-title">Hospitales ( {{ hospitales.length }} )</h4>
+                        <h6 class="card-subtitle">Hospitales registrados en la aplicación</h6>
+                    </div>
+                    <div class="col-4">
+                        <button class="btn ml-5 btn-primary float-right"
+                            (click)="abrirSweetAlert()"> 
+                            Crear
+                            <i class="fa fa-hospital-o"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="w100">Foto</th>
+                                <th>Nombre</th>
+                                <th class="w100 text-nowrap">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let i = index; let hospital of hospitales | paginate: { itemsPerPage: 9, currentPage: page }" >
+                                <td class="text-center">
+                                   <img [src]="hospital.img | imagen:'hospitales' " 
+                                        class="avatar" id="cursor" 
+                                        [alt]="hospital.nombre"
+                                        (click)="abrirModal( hospital )" >
+                                </td>
+                                <td>
+                                    <input type="text"
+                                        class="form-control"
+                                        placeholder="Nombre del hospital"
+                                        [(ngModel)]="hospital.nombre">
+                                </td>   
+                                <td class="text-nowrap text-center">
+                                    <a (click)="guardarHospital( hospital )" 
+                                        data-toggle="tooltip"
+                                        id="cursor" 
+                                        data-original-title="Gurardar cambios"> 
+                                        <i class="fa fa-pencil text-inverse m-r-10"></i>
+                                    </a>
+                                    <a (click)="eliminarHospital( hospital )"
+                                        id="cursor" 
+                                        data-toggle="tooltip" 
+                                        data-original-title="Borrar"> 
+                                        <i class="fa fa-close text-danger"></i> 
+                                    </a>
+                                </td>
+                            </tr>                        
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="hospitales.length > 9" class="text-center mt-3 mb-4 paginacion">
+                    <pagination-controls (pageChange)="page = $event"></pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
