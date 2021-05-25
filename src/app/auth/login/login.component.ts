@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
                         /** Si sucede un error renderizo la respuesta con el sweetalert2 */
                         Swal.fire('Oops...', `${ err.error.msg }`, 'error')
                       });
-    console.log( this.loginForm.value );
     // this.router.navigateByUrl('/');
   }
 
