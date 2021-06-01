@@ -56,7 +56,7 @@ export class MedicoComponent implements OnInit {
           delay(100)
         )
         .subscribe( medico => {         
-          const { nombre, hospital: { _id } } = medico
+          const { nombre, hospital:{ _id } } = medico
           this.medicoSeleccionado = medico;
           this.medicoFrom.setValue({ nombre, hospital: _id });
         }, error => {
