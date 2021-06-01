@@ -35,7 +35,9 @@
     -moz-box-shadow: 13px 13px 31px -6px rgba(0, 0, 0, 0.77);
     box-shadow: 13px 13px 31px -6px rgba(0, 0, 0, 0.77);
 }
-
+.w75 {
+    width: 75px;
+}
 .w100 {
     width: 100px;
 }

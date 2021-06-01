@@ -50,6 +50,23 @@ export class UsuarioService {
     }
   }
 
+  /** Obtener el rol del usuario */
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE' {
+    return this.usuario.role;
+  }
+
+  /** metodo que gaurda datos en el localStorage */
+  guardarLocalStorage( token: string, menu: any ){
+    localStorage.setItem('token', token);
+    localStorage.setItem('menu', JSON.stringify(menu));
+  }
+
+  /** metodo que elimina los datos del localStorage */
+  removeLocalStorge(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('menu');
+  }
+ 
   /**  inicialización de google login credenciales */
   googleinit() {
     return new Promise<void>(resolve => {
@@ -67,7 +84,7 @@ export class UsuarioService {
 
   /** Serrar sesión */
   logout() {
-    localStorage.removeItem('token');
+    this.removeLocalStorge();
     this.auth2.signOut().then(() => {
       this.ngZone.run(() => {
         this.router.navigateByUrl('/login');
@@ -88,7 +105,8 @@ export class UsuarioService {
         const { email, google, nombre, role, img, uid } = resp.usuario;
         /** Creando la instancia del objeto usuario  */
         this.usuario = new Usuario(nombre, email, '', img, google, role, uid);
-        localStorage.setItem('token', resp.token);
+        
+        this.guardarLocalStorage( resp.token, resp.menu )
         return true;
       }),
       /** esto en caso de que suseda error  en todo el metodo, captura el error */
@@ -101,7 +119,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/usuarios`, formData)
       .pipe(
         tap((resp: any) => {
-          localStorage.setItem('token', resp.token)
+          this.guardarLocalStorage( resp.token, resp.menu )
         })
       )
   }
@@ -121,7 +139,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login`, formData)
       .pipe(
         tap((resp: any) => {
-          localStorage.setItem('token', resp.token)
+          this.guardarLocalStorage( resp.token, resp.menu )
         })
       )
   }
@@ -131,7 +149,7 @@ export class UsuarioService {
     return this.http.post(`${base_url}/login/google`, { token })
       .pipe(
         tap((resp: any) => {
-          localStorage.setItem('token', resp.token)
+          this.guardarLocalStorage( resp.token, resp.menu )
         })
       )
   }
